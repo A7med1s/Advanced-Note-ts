@@ -1,20 +1,18 @@
 import { FaPhone, FaEnvelope,FaProjectDiagram ,FaBriefcase ,FaUniversity  } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
-import BtnToDownloadPdf from '../../components/BtnToDownloadPdf';
-import DisplayImage from '../../components/DisplayImage';
+import BtnToDownloadPdf from '../components/BtnToDownloadPdf';
+import DisplayImage from '../components/DisplayImage';
 
 
 
   // personal info 
   const name:any = window.localStorage.getItem('user-name') 
-  // const age:any = window.localStorage.getItem('user-age') 
   const jobTitle:any = window.localStorage.getItem('user-setJobTitle') 
   const phone:any = window.localStorage.getItem('user-phone') 
   const email:any = window.localStorage.getItem('user-email') 
   const country :any = window.localStorage.getItem('user-country') 
   const city :any = window.localStorage.getItem('user-city') 
   // const about :any = window.localStorage.getItem('user-about') 
-
 
 
 
@@ -41,8 +39,36 @@ function handleLanguages(){
 }
 
 
-const skillsBeforeEdit:any = window.localStorage.getItem('user-skills') 
-const skills = handleSkillsAndHobbies(skillsBeforeEdit)
+
+
+function handleSkillsAndHobbies(){
+  const skillsBeforeEdit:any = window.localStorage.getItem('user-skills') 
+  if(skillsBeforeEdit.length ===2){
+   
+    return(<>
+    </>)
+  }
+  else{
+    const dataResolveOne = skillsBeforeEdit.replaceAll('"'," ")
+  const dataResolveTwo = dataResolveOne.replaceAll('['," ")
+  const dataResolveThree = dataResolveTwo.replaceAll(']'," ")
+  const skills = dataResolveThree.split(',')
+  return(<>
+       <div className="" id='skills-in-pdf'>
+        <h2 className="text-lg font-semibold">Skills</h2>
+        <ul className="list-disc ml-4">
+          {skills.map(skill => (
+            <li key={skill} className='uppercase'>{skill}</li>
+          ))}
+        </ul>
+      </div>
+  </>)
+
+  }
+  
+}
+
+
 
 function handleEduction(){
   const eductionBeforeEdit:any = window.localStorage.getItem('user-eduction') 
@@ -143,13 +169,6 @@ const projectsSummary = projectSummaryBeforeEdit.split(',')
 }
 
 
-function handleSkillsAndHobbies(data){
-  const dataResolveOne = data.replaceAll('"'," ")
-  const dataResolveTwo = dataResolveOne.replaceAll('['," ")
-  const dataResolveThree = dataResolveTwo.replaceAll(']'," ")
-  const finalREsult = dataResolveThree.split(',')
-  return  finalREsult
-}
 
 
 const PDFStyleTwo= () => {
@@ -204,14 +223,7 @@ const PDFStyleTwo= () => {
      <div className='col-span-2'>
      {handleEduction()}
      {handleLanguages()}
-      <div className="" id='skills-in-pdf'>
-        <h2 className="text-lg font-semibold">Skills</h2>
-        <ul className="list-disc ml-4">
-          {skills.map(skill => (
-            <li key={skill} className='uppercase'>{skill}</li>
-          ))}
-        </ul>
-      </div>
+     {handleSkillsAndHobbies()}
   </div>
   <div className='col-span-4'>
    

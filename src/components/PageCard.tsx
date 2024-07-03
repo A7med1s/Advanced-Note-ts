@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 type PageCardProps = {
   title: string;
   imageUrl: string;
@@ -15,9 +15,9 @@ const PageCard: React.FC<PageCardProps> = ({ title, imageUrl, link }) => {
        
       </div>
       <div className="px-6 pt-4 pb-2">
-        <a href={link} className="bg-red-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Continue
-        </a>
+        
+          <Link to={link} className="bg-red-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Continue</Link>
+        
       </div>
     </div>
   );

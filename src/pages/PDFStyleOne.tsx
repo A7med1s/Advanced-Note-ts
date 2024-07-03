@@ -1,21 +1,35 @@
-import BtnToDownloadPdf from '../../components/BtnToDownloadPdf';
+import BtnToDownloadPdf from '../components/BtnToDownloadPdf';
 
 const PDFStyleOne = () => {
-
-  const skillsBeforeEdit:any = window.localStorage.getItem('user-skills') 
-  
-  const skills = handleSkillsAndHobbies(skillsBeforeEdit)
-
-  // const HobbiesBeforeEdit:any = window.localStorage.getItem('user-hobbies') 
-  
-  // const hobbies = handleSkillsAndHobbies(HobbiesBeforeEdit)
-
-  function handleSkillsAndHobbies(data){
-    const dataResolveOne = data.replaceAll('"'," ")
+  function handleSkillsAndHobbies(){
+    const skillsBeforeEdit:any = window.localStorage.getItem('user-skills') 
+    if(skillsBeforeEdit.length ===2){
+     
+      return(<>
+      </>)
+    }
+    else{
+      const dataResolveOne = skillsBeforeEdit.replaceAll('"'," ")
     const dataResolveTwo = dataResolveOne.replaceAll('['," ")
     const dataResolveThree = dataResolveTwo.replaceAll(']'," ")
-    const finalREsult = dataResolveThree.split(',')
-    return  finalREsult
+    const skills = dataResolveThree.split(',')
+    return(<>
+        <div className='skills' id='skills-in-pdf'>
+        <p className='uppercase font-bold'>skills</p>
+        <div>
+        {skills.map((skill)=>{
+          return(
+            <>
+            <p className='font-semibold capitalize'>- {skill}</p>
+            </>
+          )
+        })}
+        </div>
+      </div>
+    </>)
+  
+    }
+    
   }
   
   // personal info 
@@ -209,18 +223,7 @@ return(<>
       </div>
         {handleEduction()}
         {handleLanguages()}
-      <div className='skills' id='skills-in-pdf'>
-        <p className='uppercase font-bold'>skills</p>
-        <div>
-        {skills.map((skill)=>{
-          return(
-            <>
-            <p className='font-semibold capitalize'>- {skill}</p>
-            </>
-          )
-        })}
-        </div>
-      </div>
+      {handleSkillsAndHobbies()}
   
       {/* <div className='hobbies'>
         <p className='uppercase font-bold'>hobbies</p>

@@ -3,7 +3,6 @@ const ImageUploader = () => {
   const [image, setImage] = useState<string | null>(null);
 
   useEffect(() => {
-    // تحقق إذا كان هناك صورة مخزنة في localStorage
     const storedImage = localStorage.getItem('user-img');
     if (storedImage) {
       setImage(storedImage);
@@ -11,7 +10,6 @@ const ImageUploader = () => {
   }, []);
 
   useEffect(() => {
-    // تخزين قيمة الصورة في localStorage عندما تتغير
     if (image) {
       localStorage.setItem('user-img', image);
     }

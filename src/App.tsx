@@ -3,8 +3,8 @@ import {Routes,Route} from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import EntryPage from './pages/EntryPage'
 import StartPage from './pages/StartPage'
-import PDFStyleOne from './pages/pdf styles/PDFStyleOne'
-import PDFStyleTwo from './pages/pdf styles/PDFStyleTwo'
+import PDFStyleOne from './pages/PDFStyleOne'
+import PDFStyleTwo from './pages/PDFStyleTwo'
 import PageExamples from './pages/PageExamples'
 function App() {
 
